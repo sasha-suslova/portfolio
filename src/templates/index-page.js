@@ -15,12 +15,14 @@ export const IndexPageTemplate = ({
         <div className="container">
           <div className="section">
             <div className="content">
-              <div className="tile">
-                <img alt="Sasha greeting" src={mainpitch.image} />
-              </div>
-              <div className="tile">
-                <h3 className="subtitle">{mainpitch.description}</h3>
-              </div>
+              <div className="columns">
+                <div className="column is-6">
+                  <img src={mainpitch.image.publicURL} alt="Sasha greeting" />
+                </div>
+                <div className="column is-6">
+                  <h3 className="subtitle">{mainpitch.description}</h3>
+                </div>
+            </div>
             </div>
             <div className="column is-12">
               <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
@@ -74,6 +76,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         mainpitch {
+          image {
+            publicURL
+          }
           description
         }
       }
