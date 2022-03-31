@@ -5,8 +5,13 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 class BlogRollTemplate extends React.Component {
   render() {
-    const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
+    const { data, projectsOnly } = this.props
+
+    let posts = data.allMarkdownRemark.edges;
+
+    if (projectsOnly) {
+      posts = posts.filter(({ node: post }) => post.frontmatter.tags.includes('project'));
+    }
 
     return (
       <div className="columns is-multiline">
@@ -73,14 +78,16 @@ BlogRoll.propTypes = {
 }
 
 
-export default function BlogRoll() {
+export default function BlogRoll(props) {
   return (
     <StaticQuery
       query={graphql`
         query BlogRollQuery {
           allMarkdownRemark(
             sort: { order: DESC, fields: [frontmatter___date] }
-            filter: { frontmatter: { tags: { in: "project" }, } }
+            filter: { frontmatter: { 
+              templateKey: { eq: "blog-post" },
+            } }
           ) {
             edges {
               node {
@@ -101,16 +108,22 @@ export default function BlogRoll() {
                         quality: 100
                         layout: CONSTRAINED
                       )
-
                     }
                   }
+                  tags
                 }
               }
-            }
+            }          
           }
         }
       `}
-      render={(data, count) => <BlogRollTemplate data={data} count={count} />}
+      render={(data, count) => (
+        <BlogRollTemplate
+          data={data}
+          count={count}
+          projectsOnly={props.projectsOnly}
+        />
+      )}
     />
   );
 }

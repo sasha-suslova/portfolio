@@ -16,7 +16,7 @@ export const IndexPageTemplate = ({
           <div className="section">
             <div className="content">
               <div className="tile">
-                <img src={mainpitch.image} />
+                <img alt="Sasha greeting" src={mainpitch.image} />
               </div>
               <div className="tile">
                 <h3 className="subtitle">{mainpitch.description}</h3>
@@ -26,7 +26,7 @@ export const IndexPageTemplate = ({
               <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                 Projects
               </h3>
-              <BlogRoll />
+              <BlogRoll projectsOnly />
               <div className="column is-12 has-text-centered">
                 <Link className="btn" to="/blog">
                   Read more in my blog
