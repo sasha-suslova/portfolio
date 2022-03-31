@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-netlify-cms",
-  "description": "Example Gatsby, and Netlify CMS project",
+  "name": "portfolio",
+  "description": "Sasha Suslova UXI",
   "version": "1.1.3",
-  "author": "Austin Green",
+  "author": "Yevhenii Moroz",
   "dependencies": {
     "bulma": "^0.9.0",
     "gatsby": "^4.0.0",
